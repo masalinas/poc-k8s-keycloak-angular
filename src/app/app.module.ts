@@ -11,7 +11,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'https://keycloak.192.168.49.2.nip.io',
+        //url: 'https://keycloak.192.168.49.2.nip.io',
+        url: 'https://k8s.oferto.io',
         realm: 'poc',
         clientId: 'portal-ui'
       },

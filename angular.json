@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "keycloak-front": {
+    "poc-keycloak-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/keycloak-front",
+            "outputPath": "dist/poc-keycloak-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "keycloak-front:build:production"
+              "buildTarget": "poc-keycloak-angular:build:production"
             },
             "development": {
-              "buildTarget": "keycloak-front:build:development"
+              "buildTarget": "poc-keycloak-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

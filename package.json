@@ -1,10 +1,11 @@
 {
-  "name": "keycloak-front",
+  "name": "poc-keycloak-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-minikube": "ng build --configuration production --base-href '/keycloak-angular/' --deploy-url '/keycloak-angular/'",    
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
