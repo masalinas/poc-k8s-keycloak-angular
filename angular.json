@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "poc-keycloak-angular": {
+    "poc-k8s-keycloak-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/poc-keycloak-angular",
+            "allowedCommonJsDependencies": [
+              "js-sha256"
+            ],
+            "outputPath": "dist/poc-k8s-keycloak-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -50,7 +53,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "600kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -61,6 +64,48 @@
               ],
               "outputHashing": "all"
             },
+            "k8s": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "600kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.k8s.ts"
+                }
+              ]              
+            },
+            "minikube": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "600kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.minikube.ts"
+                }
+              ]              
+            },                        
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -73,10 +118,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "poc-keycloak-angular:build:production"
+              "buildTarget": "poc-k8s-keycloak-angular:build:production"
             },
             "development": {
-              "buildTarget": "poc-keycloak-angular:build:development"
+              "buildTarget": "poc-k8s-keycloak-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

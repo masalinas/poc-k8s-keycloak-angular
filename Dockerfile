@@ -1,6 +1,9 @@
 # Stage 1: Build Angular application
 FROM node AS builder
 
+# spring boot profile
+ARG ARG_ANGULAR_PROFILES_ACTIVE
+
 # Set the working directory
 WORKDIR /app
 
@@ -14,13 +17,13 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-RUN npm run build-minikube
+RUN npm run $ARG_ANGULAR_PROFILES_ACTIVE
 
 # Stage 2: Serve the app with nginx
 FROM nginx:alpine
 
 # Copy built files from the previous stage
-COPY --from=builder /app/dist/poc-keycloak-angular/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/poc-k8s-keycloak-angular/browser /usr/share/nginx/html
 
 # Expose the port nginx is running on
 EXPOSE 80

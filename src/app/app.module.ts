@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 
 import { ButtonModule } from 'primeng/button';
 
+import { environment } from '../environments/environment';
+
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://keycloak.192.168.59.102.nip.io',
+        url: environment.URL_IAM,
+        //url: 'http://keycloak.192.168.59.102.nip.io',
         //url: 'https://k8s.oferto.io',
         realm: 'avib',
         clientId: 'portal-ui'

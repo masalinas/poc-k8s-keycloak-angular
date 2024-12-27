@@ -25,7 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Build Docker image and pull
 Build and tag last version for oferto docker register
 ```
-$ docker build -t ofertoio/poc-keycloak-angular:1.1.0 .
+$ docker build --build-arg ARG_ANGULAR_PROFILES_ACTIVE=build-minikube -t ofertoio/poc-k8s-keycloak-angular:1.1.0 .
 ```
 
 Login to docker hub oferto account
@@ -35,7 +35,12 @@ $ docker login -u ofertoio
 
 Push the image to docker hub
 ```
-$ docker push ofertoio/poc-keycloak-angular:1.1.0
+$ docker push ofertoio/poc-k8s-keycloak-angular:1.1.0
+```
+
+## Test docker locally
+```
+docker run --rm --name poc-k8s-keycloak-angular -p 4200:80 ofertoio/poc-k8s-keycloak-angular:1.1.0
 ```
 
 ## Build Helm package, push and deploye in kubernetes
@@ -51,7 +56,12 @@ $ helm push poc-k8s-keycloak-angular-chart-1.1.0.tgz oci://registry-1.docker.io/
 
 Deploy helm package
 ```
-$ helm install poc-k8s-keycloak-angular oci://registry-1.docker.io/ofertoio/poc-k8s-keycloak-angular-chart --version 1.1.0
+$ helm delete poc-k8s-keycloak-angular
+$ helm install poc-k8s-keycloak-angular oci://registry-1.docker.io/ofertoio/poc-k8s-keycloak-angular-chart
+```
+## Test portal locally
+```
+$ kubectl port-forward svc/poc-k8s-keycloak-angular-chart-ingress 4200:80
 ```
 
 ## Further help

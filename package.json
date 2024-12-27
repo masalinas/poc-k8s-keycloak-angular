@@ -1,11 +1,13 @@
 {
   "name": "poc-k8s-keycloak-angular",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-prod": "ng serve --configuration=production",
     "build": "ng build",
-    "build-minikube": "ng build --configuration production --base-href '/keycloak-angular/' --deploy-url '/keycloak-angular/'",    
+    "build-minikube": "ng build --configuration minikube --base-href '/keycloak-angular/' --deploy-url '/keycloak-angular/'",
+    "build-k8s": "ng build --configuration k8s --base-href '/keycloak-angular/' --deploy-url '/keycloak-angular/'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -27,7 +29,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.8",
-    "@angular/cli": "^18.2.8",
+    "@angular/cli": "^18.2.12",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.2.0",
