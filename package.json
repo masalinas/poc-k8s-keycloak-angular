@@ -1,6 +1,6 @@
 {
-  "name": "poc-keycloak-angular",
-  "version": "0.0.0",
+  "name": "poc-k8s-keycloak-angular",
+  "version": "1.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

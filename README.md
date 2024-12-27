@@ -23,19 +23,35 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Build Docker image and pull
-Build your image tagging for oferto docker register
+Build and tag last version for oferto docker register
 ```
-$ docker build -t ofertoio/poc-keycloak-angular .
-```
-
-Login in docker hub oferto account
-```
-$ docker login
+$ docker build -t ofertoio/poc-keycloak-angular:1.1.0 .
 ```
 
-Push the image to docker hub oferto account
+Login to docker hub oferto account
 ```
-$ docker push oferto/poc-keycloak-angular
+$ docker login -u ofertoio
+```
+
+Push the image to docker hub
+```
+$ docker push ofertoio/poc-keycloak-angular:1.1.0
+```
+
+## Build Helm package, push and deploye in kubernetes
+Build helm package
+```
+$ helm package .
+```
+
+Push helm package
+```
+$ helm push poc-k8s-keycloak-angular-chart-1.1.0.tgz oci://registry-1.docker.io/ofertoio
+```
+
+Deploy helm package
+```
+$ helm install poc-k8s-keycloak-angular oci://registry-1.docker.io/ofertoio/poc-k8s-keycloak-angular-chart --version 1.1.0
 ```
 
 ## Further help
